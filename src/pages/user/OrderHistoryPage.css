@@ -1,0 +1,26 @@
+/* src/pages/user/OrderHistoryPage.css */
+.order-history-page {
+  padding: 2rem 0;
+}
+
+.order-card {
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s;
+}
+
+.order-card:hover {
+  transform: translateY(-2px);
+}
+
+.no-orders {
+  padding: 2rem;
+  text-align: center;
+  border-radius: 4px;
+  margin: 2rem 0;
+}
+
+.error-message {
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+}

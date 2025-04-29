@@ -50,12 +50,12 @@ export const DIETARY_PREFERENCES = [
 ];
 
 // Image placeholder
-export const DEFAULT_IMAGE = 'https://via.placeholder.com/300x200?text=No+Image';
+export const DEFAULT_IMAGE = 'https://via.placeholder.com/300x200?text=Delicious+Dish';
 
 // Price formatter
 export const formatPrice = (price) => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD'
+    currency: 'Q'
   }).format(price);
 };
