@@ -9,7 +9,13 @@ import UserLayout from './components/layouts/UserLayout';
 import MenuPage from './pages/user/MenuPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
-import OrderHistory from './pages/user/OrderHistoryPage';
+import DishDetailPage from './pages/user/DishDetailPage';
+import CartPage from './pages/user/CartPage';
+import CheckoutPage from './pages/user/CheckoutPage';
+import OrderTrackingPage from './pages/user/OrderTrackingPage';
+import ProfilePage from './pages/user/ProfilePage';
+import OrderHistoryPage from './pages/user/OrderHistoryPage';
+
 
 // Admin Components
 import AdminLayout from './components/layouts/AdminLayout';
@@ -21,7 +27,7 @@ const Cart = () => <div>Cart Page (Coming Soon)</div>;
 const Checkout = () => <div>Checkout Page (Coming Soon)</div>;
 const OrderTracking = () => <div>Order Tracking Page (Coming Soon)</div>;
 const UserProfile = () => <div>User Profile Page (Coming Soon)</div>;
-//const OrderHistory = () => <div>Order History Page (Coming Soon)</div>;
+const OrderHistory = () => <div>Order History Page (Coming Soon)</div>;
 
 // Admin placeholder components
 const AdminLogin = () => <div>Admin Login Page (Coming Soon)</div>;
@@ -74,32 +80,19 @@ function App() {
         {/* User Routes */}
         <Route path="/" element={<UserLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="menu" element={<MenuPage />} />
+          <Route path="menu/dish/:id" element={<DishDetailPage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="order-tracking" element={<OrderTrackingPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="order-history" element={<OrderHistoryPage />} />
+        </Route>
+        
+        {/* Auth Routes */}
+        <Route path="/auth">
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
-          <Route path="menu" element={<MenuPage />} />
-          <Route path="menu/:categoryId" element={<MenuPage />} />
-          <Route path="dish/:id" element={<DishDetail />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="checkout" element={
-            <UserProtectedRoute>
-              <Checkout />
-            </UserProtectedRoute>
-          } />
-          <Route path="tracking/:orderId" element={
-            <UserProtectedRoute>
-              <OrderTracking />
-            </UserProtectedRoute>
-          } />
-          <Route path="profile" element={
-            <UserProtectedRoute>
-              <UserProfile />
-            </UserProtectedRoute>
-          } />
-          <Route path="orders" element={
-            <UserProtectedRoute>
-              <OrderHistory />
-            </UserProtectedRoute>
-          } />
         </Route>
 
         {/* Admin Routes */}
