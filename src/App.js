@@ -9,6 +9,7 @@ import UserLayout from './components/layouts/UserLayout';
 import MenuPage from './pages/user/MenuPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
+import OrderHistory from './pages/user/OrderHistoryPage';
 
 // Admin Components
 import AdminLayout from './components/layouts/AdminLayout';
@@ -20,7 +21,7 @@ const Cart = () => <div>Cart Page (Coming Soon)</div>;
 const Checkout = () => <div>Checkout Page (Coming Soon)</div>;
 const OrderTracking = () => <div>Order Tracking Page (Coming Soon)</div>;
 const UserProfile = () => <div>User Profile Page (Coming Soon)</div>;
-const OrderHistory = () => <div>Order History Page (Coming Soon)</div>;
+//const OrderHistory = () => <div>Order History Page (Coming Soon)</div>;
 
 // Admin placeholder components
 const AdminLogin = () => <div>Admin Login Page (Coming Soon)</div>;
