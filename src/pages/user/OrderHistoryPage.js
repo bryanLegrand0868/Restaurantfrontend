@@ -11,25 +11,19 @@ import {
     Grid,
     Card,
     CardContent,
-    List,
-    ListItem,
-    ListItemText,
-    Divider,
-    Box,
-    Paper,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    IconButton,
     Button,
-    Chip
+    Chip,
+    Avatar,
+    Box,
+    Paper
 } from '@mui/material';
-import ReceiptIcon from '@mui/icons-material/Receipt';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import TimelineIcon from '@mui/icons-material/Timeline';
 
 const OrderHistoryPage = () => {
     const navigate = useNavigate();
@@ -69,9 +63,9 @@ const OrderHistoryPage = () => {
             <Container>
                 <Paper className="error-message">
                     <Typography color="error">{error}</Typography>
-                    <Button
-                        variant="outlined"
-                        color="primary"
+                    <Button 
+                        variant="outlined" 
+                        color="primary" 
                         onClick={() => window.location.reload()}
                     >
                         Try Again
@@ -101,7 +95,7 @@ const OrderHistoryPage = () => {
                         />
                     </Box>
                 </Box>
-
+                
                 <Typography variant="subtitle2" color="textSecondary" gutterBottom>
                     {new Date(order.createdAt).toLocaleDateString()}
                 </Typography>

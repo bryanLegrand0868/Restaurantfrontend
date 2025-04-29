@@ -56,6 +56,6 @@ export const DEFAULT_IMAGE = 'https://via.placeholder.com/300x200?text=Delicious
 export const formatPrice = (price) => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'Q'
+    currency: 'USD'
   }).format(price);
 };

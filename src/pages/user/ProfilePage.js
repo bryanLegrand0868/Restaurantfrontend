@@ -1,9 +1,8 @@
 // src/pages/user/ProfilePage.js
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../config/constants';
-import { useToast } from '@chakra-ui/react';
 
 // Material UI imports
 import {
@@ -23,21 +22,16 @@ import {
   List,
   ListItem,
   ListItemText,
-  Divider,
   IconButton,
-  Avatar,
   Chip
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const toast = useToast();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -65,17 +59,17 @@ const ProfilePage = () => {
           address: response.data.address,
           dietaryPreferences: response.data.dietaryPreferences || []
         });
-        
+
         // Get favorites from localStorage
         const savedFavorites = localStorage.getItem('favorites');
         if (savedFavorites) {
           setFavorites(JSON.parse(savedFavorites));
         }
-        
+
         // Fetch order history
         const ordersResponse = await axios.get(`${API_URL}/api/orders/history`);
         setOrderHistory(ordersResponse.data);
-        
+
         setLoading(false);
       } catch (error) {
         console.error('Error fetching profile:', error);
@@ -105,35 +99,22 @@ const ProfilePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await axios.put(`${API_URL}/api/users/profile`, formData);
-        setEditMode(false);
-        setUser(prev => ({
-            ...prev,
-            ...formData
-        }));
-        toast({
-            title: 'Profile updated successfully',
-            status: 'success',
-            duration: 3000,
-            isClosable: true
-        });
+      await axios.put(`${API_URL}/api/users/profile`, formData);
+      setEditMode(false);
+      setUser(prev => ({
+        ...prev,
+        ...formData
+      }));
     } catch (error) {
-        console.error('Error updating profile:', error);
-        toast({
-            title: 'Failed to update profile',
-            description: error.response?.data?.message || 'Please try again later',
-            status: 'error',
-            duration: 3000,
-            isClosable: true
-        });
+      console.error('Error updating profile:', error);
     }
-};
+  };
 
   const toggleFavorite = (dishId) => {
     const newFavorites = favorites.includes(dishId)
       ? favorites.filter(f => f !== dishId)
       : [...favorites, dishId];
-    
+
     setFavorites(newFavorites);
     localStorage.setItem('favorites', JSON.stringify(newFavorites));
   };
@@ -362,5 +343,6 @@ const ProfilePage = () => {
       </Card>
     </Container>
   );
-}
+};
+
 export default ProfilePage;

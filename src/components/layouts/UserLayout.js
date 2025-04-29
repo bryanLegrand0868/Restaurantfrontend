@@ -61,7 +61,7 @@ const UserLayout = () => {
 
   const authenticatedMenuItems = [
     { text: 'Profile', icon: <PersonIcon />, path: '/profile' },
-    { text: 'Orders', icon: <HistoryIcon />, path: '/orders' }
+    { text: 'Order History', icon: <HistoryIcon />, path: '/order-history' }
   ];
 
   const drawer = (
