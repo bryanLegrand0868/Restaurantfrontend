@@ -45,6 +45,25 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
 
+// Mock data
+const mockDishes = [
+  {
+    id: 1,
+    name: "Delicious Burger",
+    description: "Juicy beef patty with fresh vegetables and special sauce",
+    price: 12.99,
+    imageUrl: "https://burgersandcurries.com/",
+    categoryId: 1,
+    dietaryPreferences: ["NONE"],
+    preparationTime: 20,
+    available: true,
+    rating: 4.5,
+    reviews: []
+  }
+];
+
+
+
 const MenuPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -68,49 +87,27 @@ const MenuPage = () => {
   const [sortOption, setSortOption] = useState('recommended');
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   
-  // Fetch dishes and categories
+  // Initialize with mock data
   useEffect(() => {
-    const fetchMenuData = async () => {
-      try {
-        setLoading(true);
-        
-        // Fetch dishes with category filter if present
-        let dishesUrl = `${API_URL}/api/menu/dishes`;
-        if (selectedCategory) {
-          dishesUrl += `?categoryId=${selectedCategory}`;
-        }
-        
-        const dishesResponse = await axios.get(dishesUrl);
-        setDishes(dishesResponse.data);
-        
-        // Fetch categories
-        const categoriesResponse = await axios.get(`${API_URL}/api/menu/categories`);
-        setCategories(categoriesResponse.data);
-        
-        // Get favorites from localStorage
-        const savedFavorites = localStorage.getItem('favorites');
-        if (savedFavorites) {
-          setFavorites(JSON.parse(savedFavorites));
-        }
-        
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching menu data:', error);
-        setError('Failed to load menu. Please try again later.');
-        setLoading(false);
-      }
-    };
+    setDishes(mockDishes);
+    //setCategories(mockCategories);
+    
+    // Get favorites from localStorage
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+    
+    setLoading(false);
+  }, []);
 
-    fetchMenuData();
-  }, [selectedCategory]);
-  
   // Filter and sort dishes
   const filteredDishes = dishes
     .filter(dish => {
       const matchesSearch = dish.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            dish.description.toLowerCase().includes(searchTerm.toLowerCase());
       
-      const matchesCategory = !selectedCategory || dish.categoryId === selectedCategory;
+      const matchesCategory = !selectedCategory || dish.categoryId === parseInt(selectedCategory);
       
       const matchesDietaryPreferences = selectedDietaryPreferences.length === 0 ||
         selectedDietaryPreferences.every(pref => 

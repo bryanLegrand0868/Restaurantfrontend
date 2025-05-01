@@ -10,8 +10,6 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ProfilePage from './pages/user/ProfilePage';
 import OrderHistoryPage from './pages/user/OrderHistoryPage';
-//import CartPage from './pages/user/CartPage';
-//import OrderTrackingPage from './pages/user/OrderTrackingPage';
 
 // Admin Components
 import AdminLayout from './components/layouts/AdminLayout';
